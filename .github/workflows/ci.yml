@@ -1,0 +1,40 @@
+name: offline-contract
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      live_eval:
+        description: Run opt-in paid/authenticated v3 eval
+        type: boolean
+        default: false
+jobs:
+  recorded:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen --python 3.12
+      - run: uv run ruff check . && uv run ruff format --check .
+      - run: uv run pytest -q
+      - run: make replay
+      - run: make regress BASE=v1 CAND=v3
+  live:
+    if: github.event_name == 'workflow_dispatch' && inputs.live_eval
+    runs-on: ubuntu-latest
+    environment: live-evals
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen --python 3.12
+      - run: make eval PROMPT=v3
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-evidence
+          path: |
+            evals/reports/
+            evals/fixtures/
+            runs/

@@ -1,0 +1,7 @@
+id: discount
+expected_route: sales_reply
+must:
+- 249|list pric|discount
+must_not: []
+requires_kb: true
+required_tools: []

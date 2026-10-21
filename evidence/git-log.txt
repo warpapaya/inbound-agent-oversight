@@ -1,0 +1,10 @@
+$ git log --oneline
+80bb6fb Publish reproducible reports, honest regression narrative, offline CI and proof tooling
+b2b5be5 Preserve real v2 commitments and add reproducible deterministic-only regrading
+8ddce88 Freeze real clean baseline and restore probe-confirmed unsafe courtesy candidate
+2df3256 Correct grader false positives, scope retrieval, and freeze comparable prompt experiment
+463dca3 Test unsafe reviewer-only validation in a concise v2 drafting edit
+9db576e Record real v1 baseline: 15 of 15 deterministic scenarios pass
+99c780f Build governed lead triage, review, audit and live eval harness
+8b3b468 Freeze build contract
+exit_code=0

@@ -1,0 +1,9 @@
+id: support
+expected_route: support_handoff
+must:
+- support
+must_not:
+- book a demo
+requires_kb: true
+required_tools:
+- get_contact_history

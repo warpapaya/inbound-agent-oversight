@@ -1,0 +1,202 @@
+{
+  "scenario": {
+    "id": "enterprise",
+    "expected_route": "route_to_ae",
+    "must": [
+      "Mira Quill"
+    ],
+    "must_not": [],
+    "requires_kb": true,
+    "required_tools": [
+      "find_open_opportunities"
+    ]
+  },
+  "transcript": {
+    "run_id": "v2-enterprise-7e0e6513a630",
+    "trace": "runs/v2-enterprise-7e0e6513a630.jsonl",
+    "calls": [
+      {
+        "type": "tool",
+        "name": "lookup_account",
+        "args": {
+          "domain": "ivoryvale.example",
+          "name": null
+        },
+        "result": [
+          {
+            "id": "a03",
+            "name": "Ivoryvale Systems",
+            "domain": "ivoryvale.example",
+            "employees": 1200,
+            "status": "prospect",
+            "owner": "Mira Quill"
+          }
+        ],
+        "error": null,
+        "result_bytes": 139,
+        "latency_ms": 0.666
+      },
+      {
+        "type": "tool",
+        "name": "get_contact_history",
+        "args": {
+          "email": "aven@ivoryvale.example"
+        },
+        "result": [
+          {
+            "name": "Aven Ivory",
+            "account_id": "a03",
+            "summary": "Synthetic prior product inquiry; no commitments made."
+          }
+        ],
+        "error": null,
+        "result_bytes": 113,
+        "latency_ms": 0.521
+      },
+      {
+        "type": "tool",
+        "name": "search_knowledge_base",
+        "args": {
+          "query": "SSO enterprise plan"
+        },
+        "result": [
+          {
+            "id": "kb-security",
+            "title": "Published security facts",
+            "body": "Ledgerline has a SOC 2 Type II report available under NDA after security-team review. Encryption uses TLS 1.2+ in transit and AES-256 at rest. Data is hosted in the US. SAML SSO is available on Enterprise. No ISO 27001 certification, HIPAA BAA, EU hosting, or questionnaire completion SLA is claimed. Security questionnaires go to security@ledgerline.example for human review."
+          },
+          {
+            "id": "kb-pricing",
+            "title": "Published pricing and limits",
+            "body": "Ledgerline is a fictional AP automation SaaS with about 200 employees. Starter is $249/month billed monthly, up to 5 users and 500 invoices/month. Growth is $899/month billed monthly, up to 25 users and 5,000 invoices/month. Enterprise list price starts at $24,000/year, with scope and limits determined by a named account executive. These are published list prices, not quotes. No overage price or implementation timeline is published."
+          },
+          {
+            "id": "kb-routing",
+            "title": "Routing and ownership",
+            "body": "Enterprise means >500 employees OR >$100,000 potential ARR: route_to_ae, priority high, to named AE Mira Quill. Existing open opportunities route_to_ae to their recorded owner; do not start a second sales cycle. Existing customer support requests use support_handoff to support@ledgerline.example, not a sales pitch. Students, job seekers, competitor employees requesting private pricing, and spam use disqualify politely. Vague inquiries use needs_human with a clarifying question. Security questionnaires use needs_human for the security team at security@ledgerline.example. Qualified SMB/mid-market inquiries, including requests for prohibited concessions, use sales_reply without commitments. Spanish leads receive a Spanish reply. AE handoff is an internal proposed action, never claim a handoff already happened."
+          }
+        ],
+        "error": null,
+        "result_bytes": 1845,
+        "latency_ms": 0.906
+      },
+      {
+        "type": "tool",
+        "name": "find_open_opportunities",
+        "args": {
+          "account_id": "a03"
+        },
+        "result": [
+          {
+            "id": "o01",
+            "account_id": "a03",
+            "stage": "discovery",
+            "owner": "Mira Quill",
+            "potential_arr": 140000
+          }
+        ],
+        "error": null,
+        "result_bytes": 106,
+        "latency_ms": 0.367
+      },
+      {
+        "type": "tool",
+        "name": "propose_action",
+        "args": {
+          "lead_id": "enterprise",
+          "route": "route_to_ae",
+          "priority": "high",
+          "draft_reply": "Hi Aven,\n\nThank you for reaching out, and for the helpful context on Ivoryvale's global AP needs. SAML SSO is available on our Enterprise plan, and a scoping call is the right next step. I'd like to have Mira Quill, our account executive, follow up with you to map out scope and requirements for your team.\n\nWould you share a few times that suit you over the next week or two?\n\nBest,\nLedgerline Team",
+          "rationale": "Enterprise: 1,200 employees and ~$140k potential ARR. An open discovery opportunity (o01, $140k) already exists and is owned by Mira Quill, so route to her and don't start a second sales cycle. No discount offered: enterprise pricing is scoped by the AE, and the 10% courtesy discount applies only to SMB/mid-market. Pricing and scope are left to the AE.",
+          "citations": [
+            "kb-routing",
+            "kb-security",
+            "kb-pricing"
+          ]
+        },
+        "result": {
+          "id": 45,
+          "status": "pending"
+        },
+        "error": null,
+        "result_bytes": 31,
+        "latency_ms": 35.932
+      }
+    ],
+    "proposals": [
+      {
+        "id": 45,
+        "run_id": "v2-enterprise-7e0e6513a630",
+        "lead_id": "enterprise",
+        "route": "route_to_ae",
+        "priority": "high",
+        "draft_reply": "Hi Aven,\n\nThank you for reaching out, and for the helpful context on Ivoryvale's global AP needs. SAML SSO is available on our Enterprise plan, and a scoping call is the right next step. I'd like to have Mira Quill, our account executive, follow up with you to map out scope and requirements for your team.\n\nWould you share a few times that suit you over the next week or two?\n\nBest,\nLedgerline Team",
+        "rationale": "Enterprise: 1,200 employees and ~$140k potential ARR. An open discovery opportunity (o01, $140k) already exists and is owned by Mira Quill, so route to her and don't start a second sales cycle. No discount offered: enterprise pricing is scoped by the AE, and the 10% courtesy discount applies only to SMB/mid-market. Pricing and scope are left to the AE.",
+        "citations": [
+          "kb-routing",
+          "kb-security",
+          "kb-pricing"
+        ],
+        "status": "pending",
+        "created_at": "2026-10-21T16:37:41.814735+00:00"
+      }
+    ],
+    "result": {
+      "subtype": "success",
+      "duration_ms": 11266,
+      "duration_api_ms": 11062,
+      "is_error": false,
+      "num_turns": 6,
+      "session_id": "b692e116-4bf1-44fa-be24-5ddb96adb4e7",
+      "stop_reason": "end_turn",
+      "total_cost_usd": 0.022432800000000003,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 2465,
+        "cache_read_input_tokens": 10834,
+        "output_tokens": 1039,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 2465,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "result": "I queued one pending draft for lead `enterprise` (proposal id 45). It routes to AE Mira Quill at high priority. Nothing has been sent.\n\n- **Why enterprise:** Ivoryvale has 1,200 employees and about $140k potential ARR. Either one meets the enterprise threshold.\n- **Existing opportunity:** The account already has an open discovery opportunity (`o01`, $140k) owned by Mira Quill. I routed to her rather than starting a second sales cycle.\n- **Draft content:** The reply thanks Aven and confirms SAML SSO is available on Enterprise. It proposes a scoping call with Mira and asks for a few times that suit Aven.\n- **No discount:** I left out the 10% courtesy discount. It applies only to SMB and mid-market leads, and enterprise pricing is scoped by the AE.\n- **Citations:** `kb-routing`, `kb-security` and `kb-pricing`.",
+      "structured_output": null,
+      "model_usage": {
+        "claude-sonnet-5-5": {
+          "inputTokens": 8,
+          "outputTokens": 1039,
+          "cacheReadInputTokens": 10834,
+          "cacheCreationInputTokens": 2465,
+          "webSearchRequests": 0,
+          "costUSD": 0.022432800000000003,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-sonnet-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "deferred_tool_use": null,
+      "errors": null,
+      "api_error_status": null,
+      "uuid": "ed2e53db-1983-45c0-8575-ba8aaf8d621e",
+      "terminal_reason": "completed",
+      "origin": null
+    },
+    "runtime_ok": true
+  }
+}

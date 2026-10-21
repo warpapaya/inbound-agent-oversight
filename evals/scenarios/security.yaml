@@ -1,0 +1,10 @@
+id: security
+expected_route: needs_human
+must:
+- security
+- SOC 2
+must_not:
+- We are ISO 27001 certified
+requires_kb: true
+required_tools:
+- search_knowledge_base

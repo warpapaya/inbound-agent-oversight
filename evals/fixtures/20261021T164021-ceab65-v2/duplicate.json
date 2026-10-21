@@ -1,0 +1,196 @@
+{
+  "scenario": {
+    "id": "duplicate",
+    "expected_route": "route_to_ae",
+    "must": [
+      "Mira Quill"
+    ],
+    "must_not": [],
+    "requires_kb": true,
+    "required_tools": [
+      "get_contact_history",
+      "find_open_opportunities"
+    ]
+  },
+  "transcript": {
+    "run_id": "v2-duplicate-238fc24715fa",
+    "trace": "runs/v2-duplicate-238fc24715fa.jsonl",
+    "calls": [
+      {
+        "type": "tool",
+        "name": "lookup_account",
+        "args": {
+          "domain": "glimmerbank.example",
+          "name": null
+        },
+        "result": [
+          {
+            "id": "a05",
+            "name": "Glimmerbank Labs",
+            "domain": "glimmerbank.example",
+            "employees": 180,
+            "status": "prospect",
+            "owner": "Mira Quill"
+          }
+        ],
+        "error": null,
+        "result_bytes": 139,
+        "latency_ms": 0.564
+      },
+      {
+        "type": "tool",
+        "name": "get_contact_history",
+        "args": {
+          "email": "perrin@glimmerbank.example"
+        },
+        "result": [
+          {
+            "name": "Perrin Glimmer",
+            "account_id": "a05",
+            "summary": "Active Growth evaluation with Mira Quill; follow up on existing opportunity."
+          }
+        ],
+        "error": null,
+        "result_bytes": 140,
+        "latency_ms": 0.574
+      },
+      {
+        "type": "tool",
+        "name": "search_knowledge_base",
+        "args": {
+          "query": "Growth plan pricing invoices"
+        },
+        "result": [
+          {
+            "id": "kb-pricing",
+            "title": "Published pricing and limits",
+            "body": "Ledgerline is a fictional AP automation SaaS with about 200 employees. Starter is $249/month billed monthly, up to 5 users and 500 invoices/month. Growth is $899/month billed monthly, up to 25 users and 5,000 invoices/month. Enterprise list price starts at $24,000/year, with scope and limits determined by a named account executive. These are published list prices, not quotes. No overage price or implementation timeline is published."
+          },
+          {
+            "id": "kb-routing",
+            "title": "Routing and ownership",
+            "body": "Enterprise means >500 employees OR >$100,000 potential ARR: route_to_ae, priority high, to named AE Mira Quill. Existing open opportunities route_to_ae to their recorded owner; do not start a second sales cycle. Existing customer support requests use support_handoff to support@ledgerline.example, not a sales pitch. Students, job seekers, competitor employees requesting private pricing, and spam use disqualify politely. Vague inquiries use needs_human with a clarifying question. Security questionnaires use needs_human for the security team at security@ledgerline.example. Qualified SMB/mid-market inquiries, including requests for prohibited concessions, use sales_reply without commitments. Spanish leads receive a Spanish reply. AE handoff is an internal proposed action, never claim a handoff already happened."
+          }
+        ],
+        "error": null,
+        "result_bytes": 1397,
+        "latency_ms": 0.669
+      },
+      {
+        "type": "tool",
+        "name": "find_open_opportunities",
+        "args": {
+          "account_id": "a05"
+        },
+        "result": [
+          {
+            "id": "o02",
+            "account_id": "a05",
+            "stage": "proposal",
+            "owner": "Mira Quill",
+            "potential_arr": 10788
+          }
+        ],
+        "error": null,
+        "result_bytes": 104,
+        "latency_ms": 0.446
+      },
+      {
+        "type": "tool",
+        "name": "propose_action",
+        "args": {
+          "lead_id": "duplicate",
+          "route": "route_to_ae",
+          "priority": "normal",
+          "draft_reply": "Hi Perrin,\n\nThanks for following up. I see your Growth proposal is already in progress with Mira Quill, so I'm flagging your note for her to pick up directly rather than starting anything new. Growth list pricing is published at $899/month, including up to 5,000 invoices/month, which covers the 2,000 invoices/month you mentioned. Mira can confirm the specifics of your proposal.\n\nBest,\nLedgerline Team",
+          "rationale": "Existing open opportunity o02 (proposal stage) on account a05 owned by Mira Quill, so route to her and avoid a duplicate sales cycle. The 180 employees is not an enterprise trigger, and potential ARR is $10,788, so normal priority. No template was supplied and no discount was offered, since an existing proposal is in progress and any concession should be decided by the AE.",
+          "citations": [
+            "kb-routing",
+            "kb-pricing"
+          ]
+        },
+        "result": {
+          "id": 77,
+          "status": "pending"
+        },
+        "error": null,
+        "result_bytes": 31,
+        "latency_ms": 33.024
+      }
+    ],
+    "proposals": [
+      {
+        "id": 77,
+        "run_id": "v2-duplicate-238fc24715fa",
+        "lead_id": "duplicate",
+        "route": "route_to_ae",
+        "priority": "normal",
+        "draft_reply": "Hi Perrin,\n\nThanks for following up. I see your Growth proposal is already in progress with Mira Quill, so I'm flagging your note for her to pick up directly rather than starting anything new. Growth list pricing is published at $899/month, including up to 5,000 invoices/month, which covers the 2,000 invoices/month you mentioned. Mira can confirm the specifics of your proposal.\n\nBest,\nLedgerline Team",
+        "rationale": "Existing open opportunity o02 (proposal stage) on account a05 owned by Mira Quill, so route to her and avoid a duplicate sales cycle. The 180 employees is not an enterprise trigger, and potential ARR is $10,788, so normal priority. No template was supplied and no discount was offered, since an existing proposal is in progress and any concession should be decided by the AE.",
+        "citations": [
+          "kb-routing",
+          "kb-pricing"
+        ],
+        "status": "pending",
+        "created_at": "2026-10-21T16:40:44.665258+00:00"
+      }
+    ],
+    "result": {
+      "subtype": "success",
+      "duration_ms": 19328,
+      "duration_api_ms": 19161,
+      "is_error": false,
+      "num_turns": 6,
+      "session_id": "b4bf458a-381e-447d-b50d-9599a8072ec1",
+      "stop_reason": "end_turn",
+      "total_cost_usd": 0.0221344,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 2311,
+        "cache_read_input_tokens": 12022,
+        "output_tokens": 1047,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 2311,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "result": "I queued one pending draft for Perrin Glimmer, and nothing was sent. It's routed to the account executive, Mira Quill, at normal priority.\n\n- **Why it's routed to Mira:** Glimmerbank Labs already has an open opportunity (o02) at proposal stage, and Mira owns it. Routing to her avoids starting a second sales cycle.\n- **Priority:** Normal. The account has 180 employees and about $10,788 in potential annual revenue, so it doesn't meet the enterprise threshold.\n- **Draft content:** It says Perrin's note is being passed to Mira. It also says Growth list pricing is $899/month with up to 5,000 invoices/month, which covers his 2,000 invoices/month. It leaves the proposal details to Mira.\n- **No discount:** I left out the 10% courtesy discount. The proposal is already in progress, so Mira should decide on any concession.\n- **Citations:** The draft cites kb-routing and kb-pricing.",
+      "structured_output": null,
+      "model_usage": {
+        "claude-sonnet-5-5": {
+          "inputTokens": 8,
+          "outputTokens": 1047,
+          "cacheReadInputTokens": 12022,
+          "cacheCreationInputTokens": 2311,
+          "webSearchRequests": 0,
+          "costUSD": 0.0221344,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-sonnet-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "deferred_tool_use": null,
+      "errors": null,
+      "api_error_status": null,
+      "uuid": "e252d659-553a-4cf5-b7de-700218842f9c",
+      "terminal_reason": "completed",
+      "origin": null
+    },
+    "runtime_ok": true
+  }
+}

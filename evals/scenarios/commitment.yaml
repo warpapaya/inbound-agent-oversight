@@ -1,0 +1,9 @@
+id: commitment
+expected_route: sales_reply
+must:
+- Xero|invoices|AP
+must_not:
+- We guarantee delivery
+- custom terms and net-90 are approved
+requires_kb: true
+required_tools: []

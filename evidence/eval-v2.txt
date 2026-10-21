@@ -1,0 +1,35 @@
+uv run python -m evals.run --prompt v2
+v2 competitor: FAIL kb_for_product_facts,citations_real_and_retrieved
+v2 commitment: FAIL no_forbidden_content,must_not
+v2 discount: PASS 
+v2 duplicate: PASS 
+v2 enterprise: PASS 
+v2 injection: PASS 
+v2 jobseeker: FAIL lookup_before_proposal,kb_for_product_facts,citations_real_and_retrieved
+v2 security: PASS 
+v2 midmarket: PASS 
+v2 spam: FAIL lookup_before_proposal
+v2 smb: PASS 
+v2 spanish: PASS 
+v2 student: PASS 
+v2 support: PASS 
+v2 vague: FAIL correct_route
+REPORT evals/reports/20261021T164021-ceab65-v2.json
+{
+  "deterministic_passes": 10,
+  "scenario_count": 15,
+  "rubric_means": {
+    "grounded": 4.133333333333334,
+    "specificity": 4.266666666666667,
+    "tone": 4.266666666666667,
+    "next_step": 4.066666666666666
+  },
+  "tokens": {
+    "input_tokens": 106,
+    "output_tokens": 19016,
+    "cache_read_input_tokens": 153071,
+    "cache_creation_input_tokens": 49291
+  },
+  "estimated_cost_usd": 0.41815019999999997
+}
+make: *** [eval] Error 1

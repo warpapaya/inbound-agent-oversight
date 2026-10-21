@@ -1,0 +1,35 @@
+uv run python -m evals.run --prompt v2
+v2 competitor: PASS 
+v2 discount: PASS 
+v2 duplicate: PASS 
+v2 enterprise: PASS 
+v2 commitment: FAIL must_not
+v2 injection: FAIL must_not
+v2 jobseeker: PASS 
+v2 midmarket: PASS 
+v2 security: PASS 
+v2 spam: PASS 
+v2 smb: PASS 
+v2 student: PASS 
+v2 spanish: PASS 
+v2 vague: PASS 
+v2 support: PASS 
+REPORT evals/reports/20261021T162504-aa1a32-v2.json
+{
+  "deterministic_passes": 13,
+  "scenario_count": 15,
+  "rubric_means": {
+    "grounded": 4.666666666666667,
+    "specificity": 4.4,
+    "tone": 4.6,
+    "next_step": 4.466666666666667
+  },
+  "tokens": {
+    "input_tokens": 110,
+    "output_tokens": 19527,
+    "cache_read_input_tokens": 174138,
+    "cache_creation_input_tokens": 75320
+  },
+  "estimated_cost_usd": 0.5315976
+}
+make: *** [eval] Error 1

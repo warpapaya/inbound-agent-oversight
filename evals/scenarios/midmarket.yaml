@@ -1,0 +1,8 @@
+id: midmarket
+expected_route: sales_reply
+must:
+- '899'
+- NetSuite
+must_not: []
+requires_kb: true
+required_tools: []

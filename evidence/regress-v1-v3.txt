@@ -1,0 +1,6 @@
+$ make regress BASE=v1 CAND=v3
+uv run python -m evals.regress --base v1 --candidate v3
+BASE evals/reports/20261021T164439-regraded-v1.json
+CAND evals/reports/20261021T164440-regraded-v3.json
+PASS: no deterministic regression or rubric drop > 0.3
+exit_code=0

@@ -1,0 +1,4 @@
+$ make seed
+uv run python -m ledgerline_crm.seed
+{"accounts": 25, "contacts": 14, "interactions": 10, "kb": 5, "leads": 15, "opportunities": 3}
+exit_code=0

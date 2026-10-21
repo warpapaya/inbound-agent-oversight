@@ -1,0 +1,186 @@
+$ tree -L 2
+.
+├── CONTRACT.md
+├── DEVIATIONS.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── agent
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── prompts
+│   └── runner.py
+├── data
+│   ├── knowledge-base.md
+│   └── seed.json
+├── evals
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── fixtures
+│   ├── graders.py
+│   ├── regress.py
+│   ├── replay.py
+│   ├── reports
+│   ├── rescore.py
+│   ├── rubric.md
+│   ├── run.py
+│   └── scenarios
+├── evidence
+│   ├── audit-verification.txt
+│   ├── eval-v1.txt
+│   ├── eval-v2.txt
+│   ├── eval-v3.txt
+│   ├── experiments
+│   ├── format.txt
+│   ├── git-log.txt
+│   ├── pytest.txt
+│   ├── regress-v1-v2.txt
+│   ├── regress-v1-v3.txt
+│   ├── replay.txt
+│   ├── review-browser.json
+│   ├── review-pending.png
+│   ├── ruff.txt
+│   ├── seed.txt
+│   ├── tamper-proof.txt
+│   └── verify-audit.txt
+├── ledgerline_crm
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── audit.py
+│   ├── seed.py
+│   └── store.py
+├── local
+│   ├── audit.jsonl
+│   ├── audit.lock
+│   └── crm.db
+├── mcp_server
+│   ├── __init__.py
+│   ├── __pycache__
+│   └── server.py
+├── pyproject.toml
+├── review
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── cli.py
+│   └── web.py
+├── runs
+│   ├── v1-commitment-4869906d4956.jsonl
+│   ├── v1-commitment-ff880d17e61b.jsonl
+│   ├── v1-competitor-70891418f90e.jsonl
+│   ├── v1-competitor-78833331410c.jsonl
+│   ├── v1-discount-02c6423c691a.jsonl
+│   ├── v1-discount-d8a7262d4725.jsonl
+│   ├── v1-duplicate-6bff38f08d03.jsonl
+│   ├── v1-duplicate-7a196091aacf.jsonl
+│   ├── v1-enterprise-b7b8c2f491de.jsonl
+│   ├── v1-enterprise-d44f75313ca1.jsonl
+│   ├── v1-injection-016d57e912c4.jsonl
+│   ├── v1-injection-0bece245b449.jsonl
+│   ├── v1-injection-d676774c2251.jsonl
+│   ├── v1-jobseeker-31f74c3c969a.jsonl
+│   ├── v1-jobseeker-abb1789b9e41.jsonl
+│   ├── v1-midmarket-ca6650955afe.jsonl
+│   ├── v1-midmarket-ce6eb8b5161b.jsonl
+│   ├── v1-security-15f085b42498.jsonl
+│   ├── v1-security-af74936da530.jsonl
+│   ├── v1-smb-393dd88fb4fa.jsonl
+│   ├── v1-smb-6d4fae97720b.jsonl
+│   ├── v1-spam-87f18af5e88d.jsonl
+│   ├── v1-spam-d3806ce60509.jsonl
+│   ├── v1-spanish-20de31e097e8.jsonl
+│   ├── v1-spanish-3ab19fc869f1.jsonl
+│   ├── v1-student-11c12cfb0762.jsonl
+│   ├── v1-student-71f2b4356dea.jsonl
+│   ├── v1-support-5c698e10b905.jsonl
+│   ├── v1-support-a8c7e53d9135.jsonl
+│   ├── v1-vague-0eada1987049.jsonl
+│   ├── v1-vague-22a56192bf84.jsonl
+│   ├── v2-commitment-2ee912a2c5bb.jsonl
+│   ├── v2-commitment-9d6e9ce4c50e.jsonl
+│   ├── v2-commitment-a4ea5b35e88b.jsonl
+│   ├── v2-commitment-e77a30adddc2.jsonl
+│   ├── v2-competitor-5ef1339307d7.jsonl
+│   ├── v2-competitor-68829b4e3005.jsonl
+│   ├── v2-competitor-9fd7995c14a2.jsonl
+│   ├── v2-discount-59a7b3aafcb0.jsonl
+│   ├── v2-discount-a1c42d5db507.jsonl
+│   ├── v2-discount-c8beda022883.jsonl
+│   ├── v2-duplicate-21c551fe0ebf.jsonl
+│   ├── v2-duplicate-238fc24715fa.jsonl
+│   ├── v2-duplicate-6cac01181c30.jsonl
+│   ├── v2-enterprise-7e0e6513a630.jsonl
+│   ├── v2-enterprise-e8bed6e0c383.jsonl
+│   ├── v2-enterprise-fdd7c6a77b6a.jsonl
+│   ├── v2-injection-06d67eb44fe9.jsonl
+│   ├── v2-injection-153043dc3da0.jsonl
+│   ├── v2-injection-23e02822f4be.jsonl
+│   ├── v2-injection-4afdeac7513c.jsonl
+│   ├── v2-injection-89bee73ab649.jsonl
+│   ├── v2-injection-af01a56f665f.jsonl
+│   ├── v2-injection-c2af380035fd.jsonl
+│   ├── v2-injection-d66f38fa91f3.jsonl
+│   ├── v2-injection-f61bea88ef1c.jsonl
+│   ├── v2-jobseeker-02f7203af02d.jsonl
+│   ├── v2-jobseeker-aff18c2d71d8.jsonl
+│   ├── v2-jobseeker-ff98f146fda8.jsonl
+│   ├── v2-midmarket-07b873c6ef3c.jsonl
+│   ├── v2-midmarket-9a2b67b81184.jsonl
+│   ├── v2-midmarket-c29c2c009ec7.jsonl
+│   ├── v2-security-1ee0247caa7c.jsonl
+│   ├── v2-security-33a6a31488f2.jsonl
+│   ├── v2-security-8f73fa89b5ec.jsonl
+│   ├── v2-smb-2cc14c0c6798.jsonl
+│   ├── v2-smb-4ff6e4495256.jsonl
+│   ├── v2-smb-dbb144a89287.jsonl
+│   ├── v2-spam-5aa31414a424.jsonl
+│   ├── v2-spam-b901cf78aef5.jsonl
+│   ├── v2-spam-c6121b0097dc.jsonl
+│   ├── v2-spanish-007b715cfaf4.jsonl
+│   ├── v2-spanish-4901b0aef32a.jsonl
+│   ├── v2-spanish-8b919b3bbe1b.jsonl
+│   ├── v2-student-1787cb35e6e7.jsonl
+│   ├── v2-student-8c990a650d64.jsonl
+│   ├── v2-student-d28a3e27af6a.jsonl
+│   ├── v2-support-5f6ca121ad19.jsonl
+│   ├── v2-support-63e800b6a84a.jsonl
+│   ├── v2-support-a7ebbde14948.jsonl
+│   ├── v2-vague-547d5760d4c4.jsonl
+│   ├── v2-vague-6ede717d3510.jsonl
+│   ├── v2-vague-e22e22f2152d.jsonl
+│   ├── v3-commitment-fd1c17ec34d6.jsonl
+│   ├── v3-competitor-ce9380a853bc.jsonl
+│   ├── v3-discount-8ce3217e6397.jsonl
+│   ├── v3-duplicate-0c4d19fd84be.jsonl
+│   ├── v3-enterprise-a6cbfbc6d33a.jsonl
+│   ├── v3-injection-b42b0f4d8070.jsonl
+│   ├── v3-jobseeker-43da1969f93e.jsonl
+│   ├── v3-midmarket-0b260c98f410.jsonl
+│   ├── v3-security-5e0bfd2ba77b.jsonl
+│   ├── v3-smb-db66e44dcd27.jsonl
+│   ├── v3-spam-7dc0e226cdcf.jsonl
+│   ├── v3-spanish-d12c4395ac7d.jsonl
+│   ├── v3-student-d5488966304d.jsonl
+│   ├── v3-support-7126f9994c1f.jsonl
+│   └── v3-vague-d547c498ebea.jsonl
+├── scripts
+│   ├── collect_evidence.py
+│   ├── prove_audit.py
+│   └── prove_review.py
+├── tests
+│   ├── __pycache__
+│   ├── fixtures
+│   ├── test_agent_review.py
+│   ├── test_cli.py
+│   ├── test_core.py
+│   ├── test_discount_synonyms.py
+│   ├── test_discount_wording.py
+│   ├── test_grader_boundary.py
+│   ├── test_graders.py
+│   ├── test_replay.py
+│   ├── test_reports.py
+│   ├── test_rescore.py
+│   └── test_search.py
+└── uv.lock
+
+24 directories, 158 files
+exit_code=0

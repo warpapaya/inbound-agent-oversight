@@ -1,0 +1,9 @@
+id: duplicate
+expected_route: route_to_ae
+must:
+- Mira Quill
+must_not: []
+requires_kb: true
+required_tools:
+- get_contact_history
+- find_open_opportunities

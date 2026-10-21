@@ -1,0 +1,7 @@
+id: student
+expected_route: disqualify
+must:
+- student|studies|paper|academic
+must_not: []
+requires_kb: true
+required_tools: []

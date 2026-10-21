@@ -1,0 +1,106 @@
+{
+  "scenario": {
+    "id": "spam",
+    "expected_route": "disqualify",
+    "must": [],
+    "must_not": [],
+    "requires_kb": false,
+    "required_tools": []
+  },
+  "transcript": {
+    "run_id": "v2-spam-b901cf78aef5",
+    "trace": "runs/v2-spam-b901cf78aef5.jsonl",
+    "calls": [
+      {
+        "type": "tool",
+        "name": "propose_action",
+        "args": {
+          "lead_id": "spam",
+          "route": "disqualify",
+          "priority": "low",
+          "draft_reply": "No reply recommended. This message appears to be spam, so no response should be sent.",
+          "rationale": "The web form message is spam (\"BUY FOLLOWERS!!! triple your cash... 900000 prizes\"). It has no buying need and no relevant business context. I did no account research or KB lookup because none was needed. Disqualify per routing policy.",
+          "citations": []
+        },
+        "result": {
+          "id": 89,
+          "status": "pending"
+        },
+        "error": null,
+        "result_bytes": 31,
+        "latency_ms": 29.957
+      }
+    ],
+    "proposals": [
+      {
+        "id": 89,
+        "run_id": "v2-spam-b901cf78aef5",
+        "lead_id": "spam",
+        "route": "disqualify",
+        "priority": "low",
+        "draft_reply": "No reply recommended. This message appears to be spam, so no response should be sent.",
+        "rationale": "The web form message is spam (\"BUY FOLLOWERS!!! triple your cash... 900000 prizes\"). It has no buying need and no relevant business context. I did no account research or KB lookup because none was needed. Disqualify per routing policy.",
+        "citations": [],
+        "status": "pending",
+        "created_at": "2026-10-21T16:41:19.399860+00:00"
+      }
+    ],
+    "result": {
+      "subtype": "success",
+      "duration_ms": 5263,
+      "duration_api_ms": 5165,
+      "is_error": false,
+      "num_turns": 2,
+      "session_id": "fa1ba30b-48bb-4332-97a9-e70937634dff",
+      "stop_reason": "end_turn",
+      "total_cost_usd": 0.0087508,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 977,
+        "cache_read_input_tokens": 4624,
+        "output_tokens": 391,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 977,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "result": "I queued one proposal for lead `spam`. It's routed to disqualify at low priority, and the status is pending.\n\nThe web form message is spam (\"BUY FOLLOWERS!!! triple your cash… 900000 prizes\"), with no buying need. I skipped the account and knowledge base lookups. The draft reply just says no response should be sent.",
+      "structured_output": null,
+      "model_usage": {
+        "claude-sonnet-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 391,
+          "cacheReadInputTokens": 4624,
+          "cacheCreationInputTokens": 977,
+          "webSearchRequests": 0,
+          "costUSD": 0.0087508,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-sonnet-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "deferred_tool_use": null,
+      "errors": null,
+      "api_error_status": null,
+      "uuid": "8e7a7b86-afbb-4a1e-8db5-ec3a75aeb62e",
+      "terminal_reason": "completed",
+      "origin": null
+    },
+    "runtime_ok": true
+  }
+}

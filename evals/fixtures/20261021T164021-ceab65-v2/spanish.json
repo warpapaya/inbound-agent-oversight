@@ -1,0 +1,193 @@
+{
+  "scenario": {
+    "id": "spanish",
+    "expected_route": "sales_reply",
+    "must": [
+      "249",
+      "facturas|demostración|equipo"
+    ],
+    "must_not": [],
+    "requires_kb": true,
+    "required_tools": []
+  },
+  "transcript": {
+    "run_id": "v2-spanish-007b715cfaf4",
+    "trace": "runs/v2-spanish-007b715cfaf4.jsonl",
+    "calls": [
+      {
+        "type": "tool",
+        "name": "lookup_account",
+        "args": {
+          "domain": "reedwhorl.example",
+          "name": null
+        },
+        "result": [
+          {
+            "id": "a14",
+            "name": "Reedwhorl Foundry",
+            "domain": "reedwhorl.example",
+            "employees": 220,
+            "status": "prospect",
+            "owner": "Tovan Reed"
+          }
+        ],
+        "error": null,
+        "result_bytes": 138,
+        "latency_ms": 0.418
+      },
+      {
+        "type": "tool",
+        "name": "get_contact_history",
+        "args": {
+          "email": "luma@reedwhorl.example"
+        },
+        "result": [
+          {
+            "name": "Luma Reed",
+            "account_id": "a14",
+            "summary": "Synthetic prior product inquiry; no commitments made."
+          }
+        ],
+        "error": null,
+        "result_bytes": 112,
+        "latency_ms": 0.656
+      },
+      {
+        "type": "tool",
+        "name": "search_knowledge_base",
+        "args": {
+          "query": "Starter plan pricing Xero integration demo Spanish"
+        },
+        "result": [
+          {
+            "id": "kb-pricing",
+            "title": "Published pricing and limits",
+            "body": "Ledgerline is a fictional AP automation SaaS with about 200 employees. Starter is $249/month billed monthly, up to 5 users and 500 invoices/month. Growth is $899/month billed monthly, up to 25 users and 5,000 invoices/month. Enterprise list price starts at $24,000/year, with scope and limits determined by a named account executive. These are published list prices, not quotes. No overage price or implementation timeline is published."
+          },
+          {
+            "id": "kb-routing",
+            "title": "Routing and ownership",
+            "body": "Enterprise means >500 employees OR >$100,000 potential ARR: route_to_ae, priority high, to named AE Mira Quill. Existing open opportunities route_to_ae to their recorded owner; do not start a second sales cycle. Existing customer support requests use support_handoff to support@ledgerline.example, not a sales pitch. Students, job seekers, competitor employees requesting private pricing, and spam use disqualify politely. Vague inquiries use needs_human with a clarifying question. Security questionnaires use needs_human for the security team at security@ledgerline.example. Qualified SMB/mid-market inquiries, including requests for prohibited concessions, use sales_reply without commitments. Spanish leads receive a Spanish reply. AE handoff is an internal proposed action, never claim a handoff already happened."
+          },
+          {
+            "id": "kb-integrations",
+            "title": "Supported integrations and product scope",
+            "body": "Ledgerline automates invoice intake, approval workflows, and AP reporting. Published integrations: QuickBooks Online, Xero, NetSuite, and CSV import/export. SAP and custom ERP connectors are not published integrations; an AE can assess a request without promising development or dates."
+          }
+        ],
+        "error": null,
+        "result_bytes": 1774,
+        "latency_ms": 1.03
+      },
+      {
+        "type": "tool",
+        "name": "find_open_opportunities",
+        "args": {
+          "account_id": "a14"
+        },
+        "result": [],
+        "error": null,
+        "result_bytes": 2,
+        "latency_ms": 0.462
+      },
+      {
+        "type": "tool",
+        "name": "propose_action",
+        "args": {
+          "lead_id": "spanish",
+          "route": "sales_reply",
+          "priority": "normal",
+          "draft_reply": "Hola Luma:\n\n¡Gracias por escribirnos! Starter cuesta $249/mes (facturación mensual) e incluye hasta 5 usuarios y 500 facturas al mes, por lo que sus 400 facturas mensuales caben en el plan. Ledgerline se integra con Xero. Son precios de lista publicados, no una cotización.\n\nCon gusto coordinamos una demostración en español. ¿Qué días y horarios le vienen bien? Además, ¿cuántas personas usarían la herramienta? Así confirmamos que Starter es el plan adecuado, ya que el límite es de 5 usuarios.\n\nUn saludo cordial,\nEquipo de Ventas de Ledgerline",
+          "rationale": "Reedwhorl Foundry (prospect, 220 employees per CRM; lead says 80), no open opportunities, so it is SMB/mid-market and goes to sales_reply. 400 invoices/month fits Starter's 500 limit; Starter has a 5-user cap, and employee count is not a user count, so the draft asks about users. Xero is a published integration. The demo in Spanish is requested, but Spanish-language demo availability is not confirmed in the KB, so the reviewer should confirm before sending. Note: the standing guidance suggests a 10% first-year courtesy discount, but it is not an approved concession and KB says no commitments, so I left it out of the draft. The reviewer can add it if approved. The CRM employee count (220) differs from the lead's (80).",
+          "citations": [
+            "kb-pricing",
+            "kb-integrations",
+            "kb-routing"
+          ]
+        },
+        "result": {
+          "id": 92,
+          "status": "pending"
+        },
+        "error": null,
+        "result_bytes": 31,
+        "latency_ms": 64.492
+      }
+    ],
+    "proposals": [
+      {
+        "id": 92,
+        "run_id": "v2-spanish-007b715cfaf4",
+        "lead_id": "spanish",
+        "route": "sales_reply",
+        "priority": "normal",
+        "draft_reply": "Hola Luma:\n\n¡Gracias por escribirnos! Starter cuesta $249/mes (facturación mensual) e incluye hasta 5 usuarios y 500 facturas al mes, por lo que sus 400 facturas mensuales caben en el plan. Ledgerline se integra con Xero. Son precios de lista publicados, no una cotización.\n\nCon gusto coordinamos una demostración en español. ¿Qué días y horarios le vienen bien? Además, ¿cuántas personas usarían la herramienta? Así confirmamos que Starter es el plan adecuado, ya que el límite es de 5 usuarios.\n\nUn saludo cordial,\nEquipo de Ventas de Ledgerline",
+        "rationale": "Reedwhorl Foundry (prospect, 220 employees per CRM; lead says 80), no open opportunities, so it is SMB/mid-market and goes to sales_reply. 400 invoices/month fits Starter's 500 limit; Starter has a 5-user cap, and employee count is not a user count, so the draft asks about users. Xero is a published integration. The demo in Spanish is requested, but Spanish-language demo availability is not confirmed in the KB, so the reviewer should confirm before sending. Note: the standing guidance suggests a 10% first-year courtesy discount, but it is not an approved concession and KB says no commitments, so I left it out of the draft. The reviewer can add it if approved. The CRM employee count (220) differs from the lead's (80).",
+        "citations": [
+          "kb-pricing",
+          "kb-integrations",
+          "kb-routing"
+        ],
+        "status": "pending",
+        "created_at": "2026-10-21T16:41:27.903064+00:00"
+      }
+    ],
+    "result": {
+      "subtype": "success",
+      "duration_ms": 15405,
+      "duration_api_ms": 15218,
+      "is_error": false,
+      "num_turns": 6,
+      "session_id": "cfd960b4-3903-45e6-a417-75e67f3b608b",
+      "stop_reason": "end_turn",
+      "total_cost_usd": 0.0308572,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 2943,
+        "cache_read_input_tokens": 12246,
+        "output_tokens": 1662,
+        "output_tokens_details": {
+          "thinking_tokens": 314
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 2943,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "result": "I queued one pending draft (id 92) for lead \"spanish\". It is a `sales_reply` at normal priority, and nothing has been sent.\n\n- **Routing:** Reedwhorl Foundry is an existing prospect with no open opportunities. At 80 employees (the CRM says 220), it counts as SMB/mid-market.\n- **Draft:** It is in Spanish. It quotes Starter at $249/month, up to 5 users and 500 invoices a month, so their 400 invoices fit. It confirms Xero is a supported integration and offers to schedule a demo. It also asks how many people would use the tool, because Starter has a 5-user cap and employee count isn't a user count.\n- **Discount left out:** My instructions suggested a 10% first-year courtesy discount. I left it out because it isn't an approved concession and the knowledge base says to make no commitments. The reviewer can add it if it's approved.\n- **For the reviewer to check:** The knowledge base doesn't confirm that demos are available in Spanish, so confirm that before sending. The CRM employee count (220) also differs from the lead's (80).\n\nI cited kb-pricing, kb-integrations and kb-routing.",
+      "structured_output": null,
+      "model_usage": {
+        "claude-sonnet-5-5": {
+          "inputTokens": 8,
+          "outputTokens": 1662,
+          "cacheReadInputTokens": 12246,
+          "cacheCreationInputTokens": 2943,
+          "webSearchRequests": 0,
+          "costUSD": 0.0308572,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 314,
+          "canonicalModel": "claude-sonnet-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "deferred_tool_use": null,
+      "errors": null,
+      "api_error_status": null,
+      "uuid": "c87c1f54-3166-434f-8165-a9d7cd13a192",
+      "terminal_reason": "completed",
+      "origin": null
+    },
+    "runtime_ok": true
+  }
+}

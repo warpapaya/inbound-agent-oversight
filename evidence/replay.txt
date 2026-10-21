@@ -1,0 +1,4 @@
+$ make replay
+uv run python -m evals.replay
+{"negative_transcripts": 6, "reports": 3, "transcripts": 45}
+exit_code=0

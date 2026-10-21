@@ -1,0 +1,188 @@
+{
+  "scenario": {
+    "id": "vague",
+    "expected_route": "needs_human",
+    "must": [
+      "invoices?|workflow|team|needs|process"
+    ],
+    "must_not": [],
+    "requires_kb": true,
+    "required_tools": []
+  },
+  "transcript": {
+    "run_id": "v2-vague-e22e22f2152d",
+    "trace": "runs/v2-vague-e22e22f2152d.jsonl",
+    "calls": [
+      {
+        "type": "tool",
+        "name": "lookup_account",
+        "args": {
+          "domain": "hollowbirch.example",
+          "name": null
+        },
+        "result": [
+          {
+            "id": "a09",
+            "name": "Hollowbirch Tools",
+            "domain": "hollowbirch.example",
+            "employees": 1200,
+            "status": "prospect",
+            "owner": "Tovan Reed"
+          }
+        ],
+        "error": null,
+        "result_bytes": 141,
+        "latency_ms": 0.434
+      },
+      {
+        "type": "tool",
+        "name": "get_contact_history",
+        "args": {
+          "email": "teri@hollowbirch.example"
+        },
+        "result": [
+          {
+            "name": "Teri Hollow",
+            "account_id": "a09",
+            "summary": "Synthetic prior product inquiry; no commitments made."
+          }
+        ],
+        "error": null,
+        "result_bytes": 114,
+        "latency_ms": 0.485
+      },
+      {
+        "type": "tool",
+        "name": "find_open_opportunities",
+        "args": {
+          "account_id": "a09"
+        },
+        "result": [],
+        "error": null,
+        "result_bytes": 2,
+        "latency_ms": 0.375
+      },
+      {
+        "type": "tool",
+        "name": "search_knowledge_base",
+        "args": {
+          "query": "enterprise routing"
+        },
+        "result": [
+          {
+            "id": "kb-routing",
+            "title": "Routing and ownership",
+            "body": "Enterprise means >500 employees OR >$100,000 potential ARR: route_to_ae, priority high, to named AE Mira Quill. Existing open opportunities route_to_ae to their recorded owner; do not start a second sales cycle. Existing customer support requests use support_handoff to support@ledgerline.example, not a sales pitch. Students, job seekers, competitor employees requesting private pricing, and spam use disqualify politely. Vague inquiries use needs_human with a clarifying question. Security questionnaires use needs_human for the security team at security@ledgerline.example. Qualified SMB/mid-market inquiries, including requests for prohibited concessions, use sales_reply without commitments. Spanish leads receive a Spanish reply. AE handoff is an internal proposed action, never claim a handoff already happened."
+          },
+          {
+            "id": "kb-pricing",
+            "title": "Published pricing and limits",
+            "body": "Ledgerline is a fictional AP automation SaaS with about 200 employees. Starter is $249/month billed monthly, up to 5 users and 500 invoices/month. Growth is $899/month billed monthly, up to 25 users and 5,000 invoices/month. Enterprise list price starts at $24,000/year, with scope and limits determined by a named account executive. These are published list prices, not quotes. No overage price or implementation timeline is published."
+          },
+          {
+            "id": "kb-security",
+            "title": "Published security facts",
+            "body": "Ledgerline has a SOC 2 Type II report available under NDA after security-team review. Encryption uses TLS 1.2+ in transit and AES-256 at rest. Data is hosted in the US. SAML SSO is available on Enterprise. No ISO 27001 certification, HIPAA BAA, EU hosting, or questionnaire completion SLA is claimed. Security questionnaires go to security@ledgerline.example for human review."
+          }
+        ],
+        "error": null,
+        "result_bytes": 1845,
+        "latency_ms": 0.684
+      },
+      {
+        "type": "tool",
+        "name": "propose_action",
+        "args": {
+          "lead_id": "vague",
+          "route": "route_to_ae",
+          "priority": "high",
+          "draft_reply": "Hi Teri, thanks for your interest in Ledgerline! To point you in the right direction, could you share a bit about what you're hoping to solve (e.g., invoice volume, team size, or current AP process)? Our account executive, Mira Quill, can then follow up with next steps. Best, The Ledgerline Team",
+          "rationale": "Message is vague (\"Interested.\"), but the account Hollowbirch Tools (a09) has 1,200 employees, which meets the enterprise rule (>500), so route to AE Mira Quill at high priority. Employee count is not licensed-user count, so the AE should confirm scope. No open opportunities exist; prior history is a product inquiry with no commitments. The draft asks a clarifying question and makes no commitments. The CRM lists Tovan Reed as account owner, so the reviewer may want to coordinate with them. No discount offered.",
+          "citations": [
+            "kb-routing"
+          ]
+        },
+        "result": {
+          "id": 97,
+          "status": "pending"
+        },
+        "error": null,
+        "result_bytes": 31,
+        "latency_ms": 69.468
+      }
+    ],
+    "proposals": [
+      {
+        "id": 97,
+        "run_id": "v2-vague-e22e22f2152d",
+        "lead_id": "vague",
+        "route": "route_to_ae",
+        "priority": "high",
+        "draft_reply": "Hi Teri, thanks for your interest in Ledgerline! To point you in the right direction, could you share a bit about what you're hoping to solve (e.g., invoice volume, team size, or current AP process)? Our account executive, Mira Quill, can then follow up with next steps. Best, The Ledgerline Team",
+        "rationale": "Message is vague (\"Interested.\"), but the account Hollowbirch Tools (a09) has 1,200 employees, which meets the enterprise rule (>500), so route to AE Mira Quill at high priority. Employee count is not licensed-user count, so the AE should confirm scope. No open opportunities exist; prior history is a product inquiry with no commitments. The draft asks a clarifying question and makes no commitments. The CRM lists Tovan Reed as account owner, so the reviewer may want to coordinate with them. No discount offered.",
+        "citations": [
+          "kb-routing"
+        ],
+        "status": "pending",
+        "created_at": "2026-10-21T16:41:42.883107+00:00"
+      }
+    ],
+    "result": {
+      "subtype": "success",
+      "duration_ms": 12843,
+      "duration_api_ms": 12494,
+      "is_error": false,
+      "num_turns": 6,
+      "session_id": "0c141be4-4447-4f8d-a4dc-5ab3392c5505",
+      "stop_reason": "end_turn",
+      "total_cost_usd": 0.024571999999999997,
+      "usage": {
+        "input_tokens": 10,
+        "cache_creation_input_tokens": 2522,
+        "cache_read_input_tokens": 14620,
+        "output_tokens": 1154,
+        "output_tokens_details": {
+          "thinking_tokens": 125
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 2522,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "result": "I queued one pending draft for lead \"vague\" (proposal id 97). Nothing was sent.\n\n- **Route:** `route_to_ae`, high priority, to Mira Quill. Teri's message is only \"Interested.\", but Hollowbirch Tools has 1,200 employees. That meets the enterprise rule (more than 500 employees).\n- **Draft reply:** It thanks Teri and asks what they want to solve, such as invoice volume, team size or their current AP process. It says Mira can follow up with next steps. It makes no commitments and offers no discount.\n- **Account context:** There are no open opportunities. Teri's earlier contact was a product inquiry with no commitments made.\n- **For the reviewer:**\n  - The CRM lists Tovan Reed as the account owner, so you may want to coordinate with them.\n  - Employee count is not licensed-user count, so Mira should confirm scope.\n- **Citation:** `kb-routing`.",
+      "structured_output": null,
+      "model_usage": {
+        "claude-sonnet-5-5": {
+          "inputTokens": 10,
+          "outputTokens": 1154,
+          "cacheReadInputTokens": 14620,
+          "cacheCreationInputTokens": 2522,
+          "webSearchRequests": 0,
+          "costUSD": 0.024571999999999997,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 125,
+          "canonicalModel": "claude-sonnet-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "deferred_tool_use": null,
+      "errors": null,
+      "api_error_status": null,
+      "uuid": "3891a891-b17f-4c3e-9de0-7bc017f0e478",
+      "terminal_reason": "completed",
+      "origin": null
+    },
+    "runtime_ok": true
+  }
+}

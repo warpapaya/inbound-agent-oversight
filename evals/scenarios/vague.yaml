@@ -1,0 +1,7 @@
+id: vague
+expected_route: needs_human
+must:
+- invoices?|workflow|team|needs|process
+must_not: []
+requires_kb: true
+required_tools: []

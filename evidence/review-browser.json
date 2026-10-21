@@ -1,0 +1,31 @@
+{
+  "url": "http://127.0.0.1:8765/",
+  "reviewed_proposal_ids": [
+    55,
+    53,
+    56
+  ],
+  "actions": [
+    "approve",
+    "edit_approve",
+    "reject"
+  ],
+  "simulated_outbox_rows": [
+    {
+      "id": 4,
+      "proposal_id": 53,
+      "draft_reply": "Hi Fenn,\r\n\r\nThanks for reaching out. Growth may fit, with one caveat to check.\r\n\r\nPublished list prices: Growth is $899/month billed monthly. It includes up to 25 users and 5,000 invoices/month. Your ~3,000 invoices/month is within that invoice limit. NetSuite is a published integration. Starter is $249/month, with up to 5 users and 500 invoices/month, so it would be too small for you.\r\n\r\nPlan fit depends on how many of your 18 approvers need their own user seat. Growth's limit is 25 users. Can you tell me whether all 18 approvers would log in, and roughly how many other people (AP clerks, admins) would use it? With that, we can confirm whether Growth fits. If it does, a colleague on our team can walk through your NetSuite approval workflow with you.\r\n\r\nThese are list prices, not a quote. I can't offer discounts, custom terms, or timelines in this reply.\r\n\r\nBest regards,\r\nLedgerline Team\r\n\r\nPlease confirm the approver count.",
+      "created_at": "2026-10-21T16:41:42.294077+00:00"
+    },
+    {
+      "id": 3,
+      "proposal_id": 55,
+      "draft_reply": "Hi Neri,\n\nThanks for reaching out. Ledgerline integrates with QuickBooks Online and covers invoice intake, approval workflows, and AP reporting.\n\nStarter is $249/month billed monthly (published list price). It includes up to 5 users and 500 invoices/month, so your 300 invoices/month fit within the limit. The user cap is what matters for plan fit, not your 35 employees. Growth ($899/month) covers up to 25 users.\n\nWe'd be glad to walk your AP team through the approval workflow. To suggest the right plan, how many people would approve or process invoices in Ledgerline? And what times work for a short walkthrough?\n\nBest,\nLedgerline Sales",
+      "created_at": "2026-10-21T16:41:41.780120+00:00"
+    }
+  ],
+  "audit_entries": 108,
+  "page_errors": [],
+  "screenshot": "evidence/review-pending.png",
+  "nothing_sent": true
+}

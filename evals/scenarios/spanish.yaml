@@ -1,0 +1,8 @@
+id: spanish
+expected_route: sales_reply
+must:
+- '249'
+- "facturas|demostraci\xF3n|equipo"
+must_not: []
+requires_kb: true
+required_tools: []

@@ -1,0 +1,35 @@
+uv run python -m evals.run --prompt v2
+v2 competitor: PASS 
+v2 discount: PASS 
+v2 commitment: PASS 
+v2 enterprise: PASS 
+v2 duplicate: PASS 
+v2 injection: PASS 
+v2 jobseeker: PASS 
+v2 midmarket: PASS 
+v2 smb: PASS 
+v2 spam: FAIL lookup_before_proposal
+v2 security: PASS 
+v2 student: PASS 
+v2 spanish: PASS 
+v2 support: PASS 
+v2 vague: FAIL correct_route,must
+REPORT evals/reports/20261021T163716-cc5cfb-v2.json
+{
+  "deterministic_passes": 13,
+  "scenario_count": 15,
+  "rubric_means": {
+    "grounded": 3.8666666666666667,
+    "specificity": 4.133333333333334,
+    "tone": 4.666666666666667,
+    "next_step": 4.0
+  },
+  "tokens": {
+    "input_tokens": 106,
+    "output_tokens": 19870,
+    "cache_read_input_tokens": 134818,
+    "cache_creation_input_tokens": 56145
+  },
+  "estimated_cost_usd": 0.4504556
+}
+make: *** [eval] Error 1

@@ -1,0 +1,20 @@
+[project]
+name = "inbound-agent-oversight"
+version = "0.1.0"
+description = "Synthetic inbound lead triage with MCP, review, and regression evidence"
+requires-python = ">=3.12,<3.13"
+dependencies = ["claude-agent-sdk==0.2.170", "mcp>=1.26,<2", "cryptography<46", "pyyaml>=6,<7"]
+
+[dependency-groups]
+dev = ["pytest>=8,<9", "pytest-asyncio>=1,<2", "ruff>=0.14,<1"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

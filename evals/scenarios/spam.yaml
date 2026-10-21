@@ -1,0 +1,6 @@
+id: spam
+expected_route: disqualify
+must: []
+must_not: []
+requires_kb: false
+required_tools: []

@@ -1,0 +1,3 @@
+$ shasum -a 256 CONTRACT.md
+6713af4641326a8bd6b7e169b2a38205180612dde147fe77defb8660ffc551e4  CONTRACT.md
+exit_code=0

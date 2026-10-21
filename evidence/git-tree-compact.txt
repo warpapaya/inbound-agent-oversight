@@ -1,0 +1,78 @@
+$ tree -L 2 -I __pycache__|runs|local
+.
+├── CONTRACT.md
+├── DEVIATIONS.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── agent
+│   ├── __init__.py
+│   ├── prompts
+│   └── runner.py
+├── data
+│   ├── knowledge-base.md
+│   └── seed.json
+├── evals
+│   ├── __init__.py
+│   ├── fixtures
+│   ├── graders.py
+│   ├── regress.py
+│   ├── replay.py
+│   ├── reports
+│   ├── rescore.py
+│   ├── rubric.md
+│   ├── run.py
+│   └── scenarios
+├── evidence
+│   ├── audit-verification.txt
+│   ├── eval-v1.txt
+│   ├── eval-v2.txt
+│   ├── eval-v3.txt
+│   ├── experiments
+│   ├── format.txt
+│   ├── git-log.txt
+│   ├── git-tree.txt
+│   ├── pytest.txt
+│   ├── regress-v1-v2.txt
+│   ├── regress-v1-v3.txt
+│   ├── replay.txt
+│   ├── review-browser.json
+│   ├── review-pending.png
+│   ├── ruff.txt
+│   ├── seed.txt
+│   ├── tamper-proof.txt
+│   └── verify-audit.txt
+├── ledgerline_crm
+│   ├── __init__.py
+│   ├── audit.py
+│   ├── seed.py
+│   └── store.py
+├── mcp_server
+│   ├── __init__.py
+│   └── server.py
+├── pyproject.toml
+├── review
+│   ├── __init__.py
+│   ├── cli.py
+│   └── web.py
+├── scripts
+│   ├── collect_evidence.py
+│   ├── prove_audit.py
+│   └── prove_review.py
+├── tests
+│   ├── fixtures
+│   ├── test_agent_review.py
+│   ├── test_cli.py
+│   ├── test_core.py
+│   ├── test_discount_synonyms.py
+│   ├── test_discount_wording.py
+│   ├── test_grader_boundary.py
+│   ├── test_graders.py
+│   ├── test_replay.py
+│   ├── test_reports.py
+│   ├── test_rescore.py
+│   └── test_search.py
+└── uv.lock
+
+16 directories, 58 files
+exit_code=0

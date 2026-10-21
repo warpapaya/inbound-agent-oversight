@@ -1,0 +1,4 @@
+$ make verify-audit
+uv run python -m review.cli verify-audit
+PASS: 108 audit entries; head=1c9aea3aae9c3f7c3ec8badbfa0fe13e1d877221f5862540b4702a5c683a9b5f
+exit_code=0

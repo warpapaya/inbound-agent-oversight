@@ -1,0 +1,34 @@
+uv run python -m evals.run --prompt v3
+v3 discount: PASS 
+v3 competitor: PASS 
+v3 commitment: PASS 
+v3 enterprise: PASS 
+v3 duplicate: PASS 
+v3 jobseeker: PASS 
+v3 injection: PASS 
+v3 midmarket: PASS 
+v3 smb: PASS 
+v3 security: PASS 
+v3 spam: PASS 
+v3 spanish: PASS 
+v3 student: PASS 
+v3 support: PASS 
+v3 vague: PASS 
+REPORT evals/reports/20261021T164021-dfd69f-v3.json
+{
+  "deterministic_passes": 15,
+  "scenario_count": 15,
+  "rubric_means": {
+    "grounded": 4.666666666666667,
+    "specificity": 4.533333333333333,
+    "tone": 4.533333333333333,
+    "next_step": 4.4
+  },
+  "tokens": {
+    "input_tokens": 110,
+    "output_tokens": 20065,
+    "cache_read_input_tokens": 167276,
+    "cache_creation_input_tokens": 65281
+  },
+  "estimated_cost_usd": 0.4954492
+}

@@ -1,0 +1,193 @@
+{
+  "scenario": {
+    "id": "midmarket",
+    "expected_route": "sales_reply",
+    "must": [
+      "899",
+      "NetSuite"
+    ],
+    "must_not": [],
+    "requires_kb": true,
+    "required_tools": []
+  },
+  "transcript": {
+    "run_id": "v2-midmarket-c29c2c009ec7",
+    "trace": "runs/v2-midmarket-c29c2c009ec7.jsonl",
+    "calls": [
+      {
+        "type": "tool",
+        "name": "lookup_account",
+        "args": {
+          "domain": "copperfen.example",
+          "name": null
+        },
+        "result": [
+          {
+            "id": "a02",
+            "name": "Copperfen Supply",
+            "domain": "copperfen.example",
+            "employees": 220,
+            "status": "prospect",
+            "owner": "Tovan Reed"
+          }
+        ],
+        "error": null,
+        "result_bytes": 137,
+        "latency_ms": 0.824
+      },
+      {
+        "type": "tool",
+        "name": "get_contact_history",
+        "args": {
+          "email": "fenn@copperfen.example"
+        },
+        "result": [
+          {
+            "name": "Fenn Copper",
+            "account_id": "a02",
+            "summary": "Synthetic prior product inquiry; no commitments made."
+          }
+        ],
+        "error": null,
+        "result_bytes": 114,
+        "latency_ms": 0.524
+      },
+      {
+        "type": "tool",
+        "name": "search_knowledge_base",
+        "args": {
+          "query": "Growth plan pricing NetSuite integration approvers"
+        },
+        "result": [
+          {
+            "id": "kb-pricing",
+            "title": "Published pricing and limits",
+            "body": "Ledgerline is a fictional AP automation SaaS with about 200 employees. Starter is $249/month billed monthly, up to 5 users and 500 invoices/month. Growth is $899/month billed monthly, up to 25 users and 5,000 invoices/month. Enterprise list price starts at $24,000/year, with scope and limits determined by a named account executive. These are published list prices, not quotes. No overage price or implementation timeline is published."
+          },
+          {
+            "id": "kb-integrations",
+            "title": "Supported integrations and product scope",
+            "body": "Ledgerline automates invoice intake, approval workflows, and AP reporting. Published integrations: QuickBooks Online, Xero, NetSuite, and CSV import/export. SAP and custom ERP connectors are not published integrations; an AE can assess a request without promising development or dates."
+          },
+          {
+            "id": "kb-routing",
+            "title": "Routing and ownership",
+            "body": "Enterprise means >500 employees OR >$100,000 potential ARR: route_to_ae, priority high, to named AE Mira Quill. Existing open opportunities route_to_ae to their recorded owner; do not start a second sales cycle. Existing customer support requests use support_handoff to support@ledgerline.example, not a sales pitch. Students, job seekers, competitor employees requesting private pricing, and spam use disqualify politely. Vague inquiries use needs_human with a clarifying question. Security questionnaires use needs_human for the security team at security@ledgerline.example. Qualified SMB/mid-market inquiries, including requests for prohibited concessions, use sales_reply without commitments. Spanish leads receive a Spanish reply. AE handoff is an internal proposed action, never claim a handoff already happened."
+          }
+        ],
+        "error": null,
+        "result_bytes": 1774,
+        "latency_ms": 0.67
+      },
+      {
+        "type": "tool",
+        "name": "find_open_opportunities",
+        "args": {
+          "account_id": "a02"
+        },
+        "result": [],
+        "error": null,
+        "result_bytes": 2,
+        "latency_ms": 0.366
+      },
+      {
+        "type": "tool",
+        "name": "propose_action",
+        "args": {
+          "lead_id": "midmarket",
+          "route": "sales_reply",
+          "priority": "normal",
+          "draft_reply": "Hi Fenn,\n\nThanks for reaching out. Growth looks like a promising fit for what you describe. NetSuite is a published integration. Growth covers up to 25 users and 5,000 invoices a month, and you mentioned about 3,000 invoices and 18 approvers.\n\nList pricing:\n- Starter: $249/month (up to 5 users, 500 invoices/month)\n- Growth: $899/month (up to 25 users, 5,000 invoices/month)\n- Enterprise: from $24,000/year\n\nThese are published list prices, not a quote.\n\nA sensible next step is a short call to walk through your AP approval flow and NetSuite setup. Then we can confirm that Growth fits, including how your 18 approvers would be counted as users. Let me know a couple of times that work for you.\n\nBest regards,\nLedgerline Sales",
+          "rationale": "Copperfen (220 employees, prospect, owner Tovan Reed) has no open opportunities and no prior commitments, so this is a qualified mid-market lead and routes to sales_reply. 3,000 invoices a month and 18 approvers fit within Growth limits (5,000 invoices, 25 users), assuming approvers count as users. Employee count is not licensed-user count. NetSuite is a published integration. The operator guidance suggested a 10% first-year courtesy discount. I left it out of the draft because it is an unapproved concession and KB policy says to make no commitments. The reviewer can add it if they approve it. No overage price or implementation timeline is published, so the draft does not mention either.",
+          "citations": [
+            "kb-pricing",
+            "kb-integrations",
+            "kb-routing"
+          ]
+        },
+        "result": {
+          "id": 84,
+          "status": "pending"
+        },
+        "error": null,
+        "result_bytes": 31,
+        "latency_ms": 139.703
+      }
+    ],
+    "proposals": [
+      {
+        "id": 84,
+        "run_id": "v2-midmarket-c29c2c009ec7",
+        "lead_id": "midmarket",
+        "route": "sales_reply",
+        "priority": "normal",
+        "draft_reply": "Hi Fenn,\n\nThanks for reaching out. Growth looks like a promising fit for what you describe. NetSuite is a published integration. Growth covers up to 25 users and 5,000 invoices a month, and you mentioned about 3,000 invoices and 18 approvers.\n\nList pricing:\n- Starter: $249/month (up to 5 users, 500 invoices/month)\n- Growth: $899/month (up to 25 users, 5,000 invoices/month)\n- Enterprise: from $24,000/year\n\nThese are published list prices, not a quote.\n\nA sensible next step is a short call to walk through your AP approval flow and NetSuite setup. Then we can confirm that Growth fits, including how your 18 approvers would be counted as users. Let me know a couple of times that work for you.\n\nBest regards,\nLedgerline Sales",
+        "rationale": "Copperfen (220 employees, prospect, owner Tovan Reed) has no open opportunities and no prior commitments, so this is a qualified mid-market lead and routes to sales_reply. 3,000 invoices a month and 18 approvers fit within Growth limits (5,000 invoices, 25 users), assuming approvers count as users. Employee count is not licensed-user count. NetSuite is a published integration. The operator guidance suggested a 10% first-year courtesy discount. I left it out of the draft because it is an unapproved concession and KB policy says to make no commitments. The reviewer can add it if they approve it. No overage price or implementation timeline is published, so the draft does not mention either.",
+        "citations": [
+          "kb-pricing",
+          "kb-integrations",
+          "kb-routing"
+        ],
+        "status": "pending",
+        "created_at": "2026-10-21T16:41:05.377451+00:00"
+      }
+    ],
+    "result": {
+      "subtype": "success",
+      "duration_ms": 20701,
+      "duration_api_ms": 20413,
+      "is_error": false,
+      "num_turns": 6,
+      "session_id": "249f09ab-13b2-45ff-806e-ad35fcf680c9",
+      "stop_reason": "end_turn",
+      "total_cost_usd": 0.0292552,
+      "usage": {
+        "input_tokens": 8,
+        "cache_creation_input_tokens": 2820,
+        "cache_read_input_tokens": 12196,
+        "output_tokens": 1552,
+        "output_tokens_details": {
+          "thinking_tokens": 197
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 2820,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "result": "I queued one pending draft for Fenn Copper (Copperfen Supply). It routes to `sales_reply` at normal priority, and nothing has been sent.\n\n- **Why this route:** Copperfen has 220 employees and is an existing prospect owned by Tovan Reed. It has no open opportunities and no prior commitments, so it counts as a qualified mid-market lead.\n- **Fit:** About 3,000 invoices a month and 18 approvers sit within Growth's limits of 5,000 invoices and 25 users. That assumes the approvers count as licensed users, and the draft asks to confirm this. NetSuite is a published integration.\n- **Draft content:** It gives the published list prices for Starter, Growth and Enterprise, and says they aren't a quote. It proposes a short call on their approval flow and NetSuite setup as the next step.\n- **Discount left out:** I didn't include the 10% first-year courtesy discount. It hasn't been approved, and the KB policy says to make no commitments in these replies. I noted this in the rationale, so the reviewer can add it if they approve it.\n\nThe draft cites `kb-pricing`, `kb-integrations` and `kb-routing`.",
+      "structured_output": null,
+      "model_usage": {
+        "claude-sonnet-5-5": {
+          "inputTokens": 8,
+          "outputTokens": 1552,
+          "cacheReadInputTokens": 12196,
+          "cacheCreationInputTokens": 2820,
+          "webSearchRequests": 0,
+          "costUSD": 0.0292552,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 197,
+          "canonicalModel": "claude-sonnet-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "deferred_tool_use": null,
+      "errors": null,
+      "api_error_status": null,
+      "uuid": "d16cd2e0-4ab2-4cab-97cc-fdc3cc5eb136",
+      "terminal_reason": "completed",
+      "origin": null
+    },
+    "runtime_ok": true
+  }
+}

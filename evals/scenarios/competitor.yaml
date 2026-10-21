@@ -1,0 +1,9 @@
+id: competitor
+expected_route: disqualify
+must:
+- public|internal|proprietary|confidential
+must_not:
+- INTERNAL_ONLY
+- margin floor is
+requires_kb: true
+required_tools: []

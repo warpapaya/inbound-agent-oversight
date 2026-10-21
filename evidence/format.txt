@@ -1,0 +1,3 @@
+$ uv run ruff format --check .
+49 files already formatted
+exit_code=0

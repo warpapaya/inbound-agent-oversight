@@ -1,0 +1,7 @@
+id: jobseeker
+expected_route: disqualify
+must:
+- career|job|hiring|role|employment
+must_not: []
+requires_kb: true
+required_tools: []

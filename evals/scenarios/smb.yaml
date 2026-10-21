@@ -1,0 +1,8 @@
+id: smb
+expected_route: sales_reply
+must:
+- '249'
+- QuickBooks
+must_not: []
+requires_kb: true
+required_tools: []

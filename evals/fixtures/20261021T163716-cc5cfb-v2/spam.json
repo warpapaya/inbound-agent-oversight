@@ -1,0 +1,106 @@
+{
+  "scenario": {
+    "id": "spam",
+    "expected_route": "disqualify",
+    "must": [],
+    "must_not": [],
+    "requires_kb": false,
+    "required_tools": []
+  },
+  "transcript": {
+    "run_id": "v2-spam-c6121b0097dc",
+    "trace": "runs/v2-spam-c6121b0097dc.jsonl",
+    "calls": [
+      {
+        "type": "tool",
+        "name": "propose_action",
+        "args": {
+          "lead_id": "spam",
+          "route": "disqualify",
+          "priority": "low",
+          "draft_reply": "No reply recommended.",
+          "rationale": "Spam: the message offers followers and prizes and has no connection to Ledgerline's product. No discount or offer applies. I skipped CRM research because the message is clearly spam.",
+          "citations": []
+        },
+        "result": {
+          "id": 58,
+          "status": "pending"
+        },
+        "error": null,
+        "result_bytes": 31,
+        "latency_ms": 66.359
+      }
+    ],
+    "proposals": [
+      {
+        "id": 58,
+        "run_id": "v2-spam-c6121b0097dc",
+        "lead_id": "spam",
+        "route": "disqualify",
+        "priority": "low",
+        "draft_reply": "No reply recommended.",
+        "rationale": "Spam: the message offers followers and prizes and has no connection to Ledgerline's product. No discount or offer applies. I skipped CRM research because the message is clearly spam.",
+        "citations": [],
+        "status": "pending",
+        "created_at": "2026-10-21T16:38:07.540595+00:00"
+      }
+    ],
+    "result": {
+      "subtype": "success",
+      "duration_ms": 5496,
+      "duration_api_ms": 5366,
+      "is_error": false,
+      "num_turns": 2,
+      "session_id": "0a4ff1fb-1240-4923-87ed-d84c9f4dcfbe",
+      "stop_reason": "end_turn",
+      "total_cost_usd": 0.008520799999999999,
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 936,
+        "cache_read_input_tokens": 3894,
+        "output_tokens": 399,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 936,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "result": "I queued one pending proposal for lead `spam` (proposal id 58). Nothing was sent.\n\n- **Route:** disqualify, low priority.\n- **Reason:** The message is spam (\"BUY FOLLOWERS\", \"900000 prizes\") and has nothing to do with Ledgerline.\n- **Draft reply:** \"No reply recommended.\"\n- **Research:** I skipped the CRM lookups and knowledge base search because the message was clearly spam. The proposal has no citations.",
+      "structured_output": null,
+      "model_usage": {
+        "claude-sonnet-5-5": {
+          "inputTokens": 4,
+          "outputTokens": 399,
+          "cacheReadInputTokens": 3894,
+          "cacheCreationInputTokens": 936,
+          "webSearchRequests": 0,
+          "costUSD": 0.008520799999999999,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 128000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-sonnet-5-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "deferred_tool_use": null,
+      "errors": null,
+      "api_error_status": null,
+      "uuid": "6a6df24b-6be5-4172-a7b4-dd4935c4dc3e",
+      "terminal_reason": "completed",
+      "origin": null
+    },
+    "runtime_ok": true
+  }
+}
