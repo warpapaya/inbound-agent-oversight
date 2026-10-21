@@ -7,7 +7,7 @@ import secrets
 from html import escape
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, urlsplit
 
 from ledgerline_crm.store import Store
 
@@ -72,11 +72,20 @@ def page(store, csrf, trace_dir):
     )
 
 
-def create_server(store, port=8765, trace_dir=Path("runs")):
+def create_server(store, port=8765, trace_dir=Path("runs"), public_origin=None):
+    """Bind to loopback only. public_origin (e.g. a tailnet HTTPS URL fronted by a
+    reverse proxy) is the one extra Host/Origin the UI will accept."""
+
     class Handler(BaseHTTPRequestHandler):
+        def origins(self):
+            allowed = {f"http://127.0.0.1:{self.server.server_port}"}
+            if public_origin:
+                allowed.add(public_origin.rstrip("/"))
+            return allowed
+
         def trusted(self):
-            host = f"127.0.0.1:{self.server.server_port}"
-            return self.headers.get("Host") == host
+            hosts = {urlsplit(o).netloc for o in self.origins()}
+            return self.headers.get("Host") in hosts
 
         def reply(self, status, body):
             payload = body.encode()
@@ -99,8 +108,8 @@ def create_server(store, port=8765, trace_dir=Path("runs")):
             self.reply(200, page(store, self.server.csrf, trace_dir))
 
         def do_POST(self):
-            origin = f"http://127.0.0.1:{self.server.server_port}"
-            if not self.trusted() or self.headers.get("Origin", origin) != origin:
+            origin = self.headers.get("Origin")
+            if not self.trusted() or (origin is not None and origin not in self.origins()):
                 return self.reply(403, "Invalid origin")
             if self.path != "/decision":
                 return self.reply(404, "Not found")
@@ -139,8 +148,12 @@ def main():
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--db", default="local/crm.db")
     parser.add_argument("--audit", default="local/audit.jsonl")
+    parser.add_argument(
+        "--public-origin",
+        help="extra trusted origin when fronted by a reverse proxy, e.g. https://host.tailnet.ts.net:8765",
+    )
     args = parser.parse_args()
-    server = create_server(Store(args.db, args.audit), args.port)
+    server = create_server(Store(args.db, args.audit), args.port, public_origin=args.public_origin)
     print(f"Review UI: http://127.0.0.1:{server.server_port} (simulated outbox only)", flush=True)
     try:
         server.serve_forever()
