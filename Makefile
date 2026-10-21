@@ -1,4 +1,4 @@
-.PHONY: seed test eval regress verify-audit review replay
+.PHONY: seed test eval regress verify-audit review replay demo
 PROMPT ?= v3
 BASE ?= v1
 CAND ?= v3
@@ -16,3 +16,6 @@ review:
 	uv run python -m review.web
 replay:
 	uv run python -m evals.replay
+demo:
+	uv run python -m review.demo
+	uv run python -m review.web --db local/demo/crm.db --audit local/demo/audit.jsonl

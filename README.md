@@ -47,6 +47,14 @@ uv run pytest -q                  # offline: no API key or login needed
 make replay                       # 45 recorded final transcripts, including known failures
 ```
 
+To explore the review screen without an API key, load three recorded proposals
+(v1 and v2 answers to the injection lead, and v2's commitment draft) into a fresh
+`local/demo/` database and start the UI:
+
+```sh
+make demo                         # http://127.0.0.1:8765/ ; rerun to reset
+```
+
 For a live lead, either log into an installed Claude Code CLI (`claude auth login`)
 or export `ANTHROPIC_API_KEY` in your shell. The SDK can use its bundled CLI with an
 API key; `agent.runner` prefers an installed `claude` when present. A non-default

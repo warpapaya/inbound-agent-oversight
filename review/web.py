@@ -137,8 +137,10 @@ def create_server(store, port=8765, trace_dir=Path("runs")):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8765)
+    parser.add_argument("--db", default="local/crm.db")
+    parser.add_argument("--audit", default="local/audit.jsonl")
     args = parser.parse_args()
-    server = create_server(Store(), args.port)
+    server = create_server(Store(args.db, args.audit), args.port)
     print(f"Review UI: http://127.0.0.1:{server.server_port} (simulated outbox only)", flush=True)
     try:
         server.serve_forever()
